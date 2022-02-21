@@ -37,7 +37,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $typeMembre;
+    private $particulier;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -175,14 +175,14 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getTypeMembre(): ?bool
+    public function getParticulier(): ?bool
     {
-        return $this->typeMembre;
+        return $this->particulier;
     }
 
-    public function setTypeMembre(bool $typeMembre): self
+    public function setParticulier(bool $particulier): self
     {
-        $this->typeMembre = $typeMembre;
+        $this->particulier = $particulier;
 
         return $this;
     }

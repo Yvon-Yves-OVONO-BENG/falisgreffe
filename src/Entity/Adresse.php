@@ -79,6 +79,11 @@ class Adresse
         $this->users = new ArrayCollection();
     }
 
+    public function getComplementAdresse(): ?string
+    {
+        return $this->complementAdresse;
+    }
+
     public function setComplementAdresse(?string $complementAdresse): self
     {
         $this->complementAdresse = $complementAdresse;

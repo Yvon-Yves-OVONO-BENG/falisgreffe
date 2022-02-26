@@ -45,11 +45,6 @@ class Adresse
     private $ville;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Pays::class, inversedBy="adresses")
-     */
-    private $pays;
-
-    /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $accepteRecevoirInformations;
@@ -73,6 +68,21 @@ class Adresse
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="adresse")
      */
     private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Arrondissement::class, inversedBy="adresses")
+     */
+    private $arrondissement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Commune::class, inversedBy="adresses")
+     */
+    private $commune;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=BisTer::class, inversedBy="adresses")
+     */
+    private $bisTer;
 
     public function __construct()
     {
@@ -135,18 +145,6 @@ class Adresse
     public function setVille(?string $ville): self
     {
         $this->ville = $ville;
-
-        return $this;
-    }
-
-    public function getPays(): ?Pays
-    {
-        return $this->pays;
-    }
-
-    public function setPays(?Pays $pays): self
-    {
-        $this->pays = $pays;
 
         return $this;
     }
@@ -225,6 +223,42 @@ class Adresse
                 $user->setAdresse(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getArrondissement(): ?Arrondissement
+    {
+        return $this->arrondissement;
+    }
+
+    public function setArrondissement(?Arrondissement $arrondissement): self
+    {
+        $this->arrondissement = $arrondissement;
+
+        return $this;
+    }
+
+    public function getCommune(): ?Commune
+    {
+        return $this->commune;
+    }
+
+    public function setCommune(?Commune $commune): self
+    {
+        $this->commune = $commune;
+
+        return $this;
+    }
+
+    public function getBisTer(): ?BisTer
+    {
+        return $this->bisTer;
+    }
+
+    public function setBisTer(?BisTer $bisTer): self
+    {
+        $this->bisTer = $bisTer;
 
         return $this;
     }

@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\PaysRepository;
+use App\Repository\NationaliteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=PaysRepository::class)
+ * @ORM\Entity(repositoryClass=NationaliteRepository::class)
  */
-class Pays
+class Nationalite
 {
     /**
      * @ORM\Id
@@ -22,10 +22,10 @@ class Pays
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $pays;
+    private $nationalite;
 
     /**
-     * @ORM\OneToMany(targetEntity=EtatCivil::class, mappedBy="paysNaissance")
+     * @ORM\OneToMany(targetEntity=EtatCivil::class, mappedBy="nationalite")
      */
     private $etatCivils;
 
@@ -39,14 +39,14 @@ class Pays
         return $this->id;
     }
 
-    public function getPays(): ?string
+    public function getNationalite(): ?string
     {
-        return $this->pays;
+        return $this->nationalite;
     }
 
-    public function setPays(string $pays): self
+    public function setNationalite(string $nationalite): self
     {
-        $this->pays = $pays;
+        $this->nationalite = $nationalite;
 
         return $this;
     }
@@ -63,7 +63,7 @@ class Pays
     {
         if (!$this->etatCivils->contains($etatCivil)) {
             $this->etatCivils[] = $etatCivil;
-            $etatCivil->setPaysNaissance($this);
+            $etatCivil->setNationalite($this);
         }
 
         return $this;
@@ -73,13 +73,11 @@ class Pays
     {
         if ($this->etatCivils->removeElement($etatCivil)) {
             // set the owning side to null (unless already changed)
-            if ($etatCivil->getPaysNaissance() === $this) {
-                $etatCivil->setPaysNaissance(null);
+            if ($etatCivil->getNationalite() === $this) {
+                $etatCivil->setNationalite(null);
             }
         }
 
         return $this;
     }
-
-
 }

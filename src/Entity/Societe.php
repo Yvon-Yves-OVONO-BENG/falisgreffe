@@ -125,6 +125,16 @@ class Societe
      */
     private $enregistreLe;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $societeConstitueAssocieUnique;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $personneMoraleConstitueSansActivite;
+
     public function __construct()
     {
         $this->beneficiaires = new ArrayCollection();
@@ -404,4 +414,29 @@ class Societe
 
         return $this;
     }
+
+    public function getSocieteConstitueAssocieUnique(): ?bool
+    {
+        return $this->societeConstitueAssocieUnique;
+    }
+
+    public function setSocieteConstitueAssocieUnique(bool $societeConstitueAssocieUnique): self
+    {
+        $this->societeConstitueAssocieUnique = $societeConstitueAssocieUnique;
+
+        return $this;
+    }
+
+    public function getPersonneMoraleConstitueSansActivite(): ?bool
+    {
+        return $this->personneMoraleConstitueSansActivite;
+    }
+
+    public function setPersonneMoraleConstitueSansActivite(bool $personneMoraleConstitueSansActivite): self
+    {
+        $this->personneMoraleConstitueSansActivite = $personneMoraleConstitueSansActivite;
+
+        return $this;
+    }
+
 }

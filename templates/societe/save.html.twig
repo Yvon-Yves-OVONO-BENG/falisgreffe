@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}save societe{% endblock %}
+
+{% block body %}
+    {{form_start(societeForm)}}
+        {{form_row(societeForm.telephone)}}
+        {{form_row(societeForm.email)}}
+            <h3>Grandes entreprises</h3>
+                <div>
+                    {{form_widget(societeForm.formeJuridique.formeJuridique[0])}}
+                    {{form_label(societeForm.formeJuridique.formeJuridique[0])}}
+                    <br>
+                    {{form_widget(societeForm.formeJuridique.formeJuridique[1])}}
+                    {{form_label(societeForm.formeJuridique.formeJuridique[1])}}
+
+                </div>
+                
+            <h3>Moyennes entreprises</h3>
+             <div>
+                    {{form_widget(societeForm.formeJuridique.formeJuridique[2])}}
+                    {{form_label(societeForm.formeJuridique.formeJuridique[2])}}
+                    <br>
+                    {{form_widget(societeForm.formeJuridique.formeJuridique[3])}}
+                    {{form_label(societeForm.formeJuridique.formeJuridique[3])}}
+
+                </div>
+        {# {{form_row(societeForm.formeJuridique.formeJuridique)}} #}
+
+        {{form_widget(societeForm.societeConstitueAssocieUnique)}}
+        {{form_label(societeForm.societeConstitueAssocieUnique)}}
+        {{form_widget(societeForm.personneMoraleConstitueSansActivite)}}
+        {{form_label(societeForm.personneMoraleConstitueSansActivite)}}
+    {{form_end(societeForm)}}
+{% endblock %}

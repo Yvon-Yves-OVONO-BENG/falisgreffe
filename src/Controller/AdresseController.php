@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/adresse')]
 class AdresseController extends AbstractController
 {
     protected $em;
@@ -19,10 +20,8 @@ class AdresseController extends AbstractController
         $this->em = $em;
     }
 
-    /**
-     * @Route("/add_adresse", name="add_adresse")
-     */
-    public function index(Request $request): Response
+    #[Route('/save', name: 'adresse_save')]
+    public function save(Request $request): Response
     {
         $adresse = new Adresse;
 

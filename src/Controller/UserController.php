@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
+#[Route('/user')]
 class UserController extends AbstractController
 {
     protected $em;
@@ -20,9 +21,7 @@ class UserController extends AbstractController
         $this->em = $em;
     }
 
-    /**
-     * @Route("/add_user", name="add_user")
-     */
+    #[Route('/save', name: 'user_save')]
     public function addUser(Request $request): Response
     {
         ////on crée un objet de type user

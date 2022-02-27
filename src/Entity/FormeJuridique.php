@@ -25,19 +25,14 @@ class FormeJuridique
     private $formeJuridique;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $societeConstitueAssocieUnique;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $personneMoraleConstitueSansActivite;
-
-    /**
      * @ORM\OneToMany(targetEntity=Societe::class, mappedBy="formeJuridique")
      */
     private $societes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TypeSociete::class, inversedBy="formeJuridiques")
+     */
+    private $typeSociete;
 
     public function __construct()
     {
@@ -57,30 +52,6 @@ class FormeJuridique
     public function setFormeJuridique(string $formeJuridique): self
     {
         $this->formeJuridique = $formeJuridique;
-
-        return $this;
-    }
-
-    public function getSocieteConstitueAssocieUnique(): ?bool
-    {
-        return $this->societeConstitueAssocieUnique;
-    }
-
-    public function setSocieteConstitueAssocieUnique(bool $societeConstitueAssocieUnique): self
-    {
-        $this->societeConstitueAssocieUnique = $societeConstitueAssocieUnique;
-
-        return $this;
-    }
-
-    public function getPersonneMoraleConstitueSansActivite(): ?bool
-    {
-        return $this->personneMoraleConstitueSansActivite;
-    }
-
-    public function setPersonneMoraleConstitueSansActivite(bool $personneMoraleConstitueSansActivite): self
-    {
-        $this->personneMoraleConstitueSansActivite = $personneMoraleConstitueSansActivite;
 
         return $this;
     }
@@ -111,6 +82,18 @@ class FormeJuridique
                 $societe->setFormeJuridique(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTypeSociete(): ?TypeSociete
+    {
+        return $this->typeSociete;
+    }
+
+    public function setTypeSociete(?TypeSociete $typeSociete): self
+    {
+        $this->typeSociete = $typeSociete;
 
         return $this;
     }

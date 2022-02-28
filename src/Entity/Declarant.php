@@ -33,7 +33,7 @@ class Declarant
     private $email;
 
     /**
-     * @ORM\ManyToOne(targetEntity=EnqualiteDe::class, inversedBy="declarants")
+     * @ORM\ManyToOne(targetEntity=EnQualiteDe::class, inversedBy="declarants")
      */
     private $enQualiteDe;
 

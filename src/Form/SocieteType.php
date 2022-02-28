@@ -13,9 +13,11 @@ class SocieteType extends AbstractType
     {
         $builder
             ->add('formeJuridique', FormeJuridiqueType::class)
+            ->add('societeConstitueAssocieUnique')
+            ->add('personneMoraleConstitueSansActivite')
             // ->add('effectifSalarieOuAssimile')
-            ->add('telephone')
-            ->add('email')
+            // ->add('telephone')
+            // ->add('email')
             // ->add('commentaireDestinationGreffe')
             // ->add('visualiserFormalite')
             // ->add('paye')
@@ -32,8 +34,6 @@ class SocieteType extends AbstractType
             // ->add('declarant')
             // ->add('document')
             // ->add('modePaiement')
-            ->add('societeConstitueAssocieUnique')
-            ->add('personneMoraleConstitueSansActivite')
         ;
     }
 

@@ -34,6 +34,11 @@ class FormeJuridique
      */
     private $typeSociete;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $sigle;
+
     public function __construct()
     {
         $this->societes = new ArrayCollection();
@@ -94,6 +99,18 @@ class FormeJuridique
     public function setTypeSociete(?TypeSociete $typeSociete): self
     {
         $this->typeSociete = $typeSociete;
+
+        return $this;
+    }
+
+    public function getSigle(): ?string
+    {
+        return $this->sigle;
+    }
+
+    public function setSigle(?string $sigle): self
+    {
+        $this->sigle = $sigle;
 
         return $this;
     }

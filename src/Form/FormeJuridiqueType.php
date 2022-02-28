@@ -34,7 +34,7 @@ class FormeJuridiqueType extends AbstractType
                 'multiple' => false,
                 'choice_value' => 'id',
                 'choice_label' => function(?FormeJuridique $formeJuridique){
-                    return $formeJuridique ? strtoupper($formeJuridique->getFormeJuridique()) : '';
+                    return $formeJuridique ? $formeJuridique->getFormeJuridique() : '';
                 },
                 // 'group_by' => function(){
                 //     return rand(0,1) == 1 ? 'Grande entreprise' : 'Moyenne entreprise';

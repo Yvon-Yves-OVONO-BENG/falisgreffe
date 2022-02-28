@@ -14,7 +14,7 @@ final class Version20220226213741 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Mise à jour des tables forme_juridique et societe';
     }
 
     public function up(Schema $schema): void

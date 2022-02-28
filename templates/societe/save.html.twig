@@ -2,11 +2,288 @@
 
 {% block title %}save societe{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        /* 
+    Ici, nous commençons par quelques réinitialisations, puis nous définissons les propriétés font-family et background-color pour la balise body. 
+*/
+
+@import url("https://fonts.googleapis.com/css?family=Nunito&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #f5f6f7;
+  font-family: "Nunito", sans-serif;
+}
+
+main {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 
+    Ensuite, nous utilisons la valeur flex sur la balise main pour centrer l'élément par rapport à la balise body. 
+*/
+.stepper {
+    /* width: 20rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5%;
+  }
+  
+  .step--1,
+  .step--2,
+  .step--3,
+  .step--4,
+  .step--5 {
+    width: 5rem;
+    padding: 0.5rem 0;
+    background: #fff;
+    color: #666;
+    text-align: center;
+  }
+  .step--1,
+  .step--2,
+  .step--3,
+  .step--4 {
+    border-right: 1px solid #666;
+  }
+
+
+/* 
+    Pour les éléments Stepper, nous nous appuyons sur CSS flexbox pour les aligner horizontalement, puis nous utilisons leurs noms de classe pour ajouter le style. 
+*/
+.form {
+    background: #fff;
+    text-align: center;
+    /* position: absolute; */ 
+    width: 25rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(51, 51, 51, 0.2);
+    display: none;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .form--header-container {
+    background: linear-gradient(to right, rgb(51, 51, 51), #919191);
+    color: #fff;
+    height: 6rem;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  .form--header-title {
+    font-size: 1.4rem;
+  }
+  
+  .form--header-text {
+    padding: 0.5rem 0;
+  } 
+  
+  input[type="text"] {
+    padding: 0.8rem;
+    margin: auto;
+    margin-top: 0.5rem;
+    width: 20rem;
+    display: block;
+    border-radius: 0.5rem;
+    outline: none;
+    border: 1px solid #bdbdbb;
+  }
+  
+  .form__btn {
+    background: #333;
+    color: #fff;
+    outline: none;
+    border: none;
+    padding: 0.5rem 0.7rem;
+    width: 7rem;
+    margin: 1rem auto;
+    border-radius: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .form--message-text {
+    width: 25rem;
+    background: #fff;
+    color: #444;
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 1.4rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(51, 51, 51, 0.2);
+    animation: fadeIn 0.8s;
+    border-radius: 1rem;
+  }
+
+/* 
+    Au début, nous cachons les trois formulaires. Seul le formulaire contenant la classe active class sera affiché.
+
+    Dans la classe form-header-container, nous utilisons linear-gradient pour styliser l'en-tête du formulaire.
+
+    Ensuite, dans la classe form-message-text, nous ajoutons la propriété animation pour avoir un effet de fondu lorsque le formulaire est soumis avec succès. 
+*/
+.form-active {
+    z-index: 1000;
+    display: block;
+  }
+  .form-active-animate {
+    animation: moveRight 1s;
+  }
+  .form-inactive {
+    display: block;
+    animation: moveLeft 1s;
+  }
+  
+  .step-active {
+    background: #666;
+    color: #fff;
+    border: 1px solid #666;
+  }
+
+  /* 
+    Nous utilisons la classe form-active pour afficher le formulaire actuel. Et aussi la propriété z-index pour placer le formulaire au-dessus d'autres éléments.
+
+    Ensuite, nous utilisons la classe form-active-animate pour créer une belle entrée d'animation de gauche à droite. Nous avons également le nom de classe form-inactive qui permet de masquer le formulaire précédent. 
+*/
+@keyframes moveRight {
+    0% {
+      transform: translateX(-27rem) scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0rem) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes moveLeft {
+    0% {
+      transform: translateX(0rem) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(27rem) scale(0.9);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+/* 
+    Comme vous pouvez le voir ici, nous nous appuyons sur les keyframes pour réaliser l'animation.
+
+    La première animation, moveRight, déplacera l'élément de gauche à droite en utilisant la propriété transform.
+
+    Pour la deuxième animation, c'est relativement le même processus, sauf que l'élément se déplacera davantage sur le côté droit.
+
+    La dernière animation, fadeIn, commencera l'effet de fondu d'entrée lorsque l'élément apparaît. 
+*/
+    </style>
+{% endblock %}
+
+
+
 {% block body %}
+    <main>
+        <div class="stepper">
+          <div class="step--1 step-active">Step 1</div>
+          <div class="step--2">Step 2</div>
+          <div class="step--3">Step 3</div>
+          {# 
+          <div class="step--4">Step 4</div>
+          <div class="step--5">Finish</div> #}
+        </div>
+        <form action="{{path('societe_save')}}" method="post">
+            <div class="form form-active">
+              <div class="form--header-container">
+                <h1 class="form--header-title">
+                  Etape 1
+                </h1>
+          
+                <p class="form--header-text">
+                  Tell us more about you.
+                </p>
+              </div>
+              <input type="text" placeholder="Name" name="Name" />
+              <input type="text" placeholder="Email" name="Email" />
+              <input type="text" placeholder="Password" name="Password" />
+              <button class="form__btn" id="btn-1" name="btn1">Next</button>
+            </div>
+            <div class="form">
+              <div class="form--header-container">
+                <h1 class="form--header-title">
+                  Etape 2
+                </h1>
+          
+                <p class="form--header-text">
+                  Tell us more about your company.
+                </p>
+              </div>
+          
+              <input type="text" placeholder="Company Name" name="company" />
+              <input type="text" placeholder="Job title" name="title" />
+              <input type="text" placeholder="Location" name="location"/>
+              <button class="form__btn" id="btn-2-prev" name="btnprev2">Previous</button>
+              <button class="form__btn" id="btn-2-next" name="btnnext2">Next</button>
+            </div>
+            <div class="form">
+              <div class="form--header-container">
+                <h1 class="form--header-title">
+                  Etape 3
+                </h1>
+          
+                <p class="form--header-text">
+                  Tell us more about your company.
+                </p>
+              </div>
+          
+              <input type="text" placeholder="Company Name" name="company" />
+              <input type="text" placeholder="Job title" name="title" />
+              <input type="text" placeholder="Location" name="location"/>
+              <button class="form__btn" id="btn-3-prev" name="btnprev3">Previous</button>
+              <button class="form__btn" id="btn-3-next" name="btnnext3">Next</button>
+            </div>
+
+
+            {# <div class="form">
+              <div class="form--header-container">
+                <h1 class="form--header-title">
+                  Social account
+                </h1>
+          
+                <p class="form--header-text">
+                  Tell us more about your social account.
+                </p>
+              </div>
+              <input type="text" placeholder="Linkedin" name="linkedin"/>
+              <input type="text" placeholder="Twitter" name="twitter" />
+              <input type="text" placeholder="Github" name="github" />
+              <button class="form__btn" id="btn-4-prev" name="btnprev4">Previous</button>
+              <button class="form__btn" id="btn-4" name="submitForm" type="submit">Submit</button>
+            </div> #}
+        </form>
+        <div class="form--message"></div>
+    </main>
     {{form_start(societeForm)}}
-        {{form_row(societeForm.telephone)}}
-        {{form_row(societeForm.email)}}
-            <h3>Grandes entreprises</h3>
+
+            {# <h3>Grandes entreprises</h3>
                 <div>
                     {{form_widget(societeForm.formeJuridique.formeJuridique[0])}}
                     {{form_label(societeForm.formeJuridique.formeJuridique[0])}}
@@ -24,12 +301,117 @@
                     {{form_widget(societeForm.formeJuridique.formeJuridique[3])}}
                     {{form_label(societeForm.formeJuridique.formeJuridique[3])}}
 
-                </div>
-        {# {{form_row(societeForm.formeJuridique.formeJuridique)}} #}
+                </div> #}
+        {{form_row(societeForm.formeJuridique.formeJuridique)}}
 
         {{form_widget(societeForm.societeConstitueAssocieUnique)}}
         {{form_label(societeForm.societeConstitueAssocieUnique)}}
         {{form_widget(societeForm.personneMoraleConstitueSansActivite)}}
         {{form_label(societeForm.personneMoraleConstitueSansActivite)}}
     {{form_end(societeForm)}}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        // Comme vous pouvez le voir ici, nous écoutons l'événement click puis utilisons la fonction gotoNextForm pour le gérer.
+
+const formBtn1 = document.querySelector("#btn-1");
+
+const formBtnPrev2 = document.querySelector("#btn-2-prev");
+const formBtnNext2 = document.querySelector("#btn-2-next");
+
+const formBtnPrev3 = document.querySelector("#btn-3-prev");
+const formBtnNext3 = document.querySelector("#btn-3-next");
+
+
+// const formBtnPrev4 = document.querySelector("#btn-4-prev");
+// const formBtn4 = document.querySelector("#btn-4");
+
+// Pour interagir avec le DOM, nous devons sélectionner tous les boutons du formulaire en utilisant la méthode querySelector.
+
+// Button listener of form 1
+formBtn1.addEventListener("click", function(e) {
+    gotoNextForm(formBtn1, formBtnNext2, 1, 2);
+    e.preventDefault();
+  });
+  
+  // Next button listener of form 2
+  formBtnNext2.addEventListener("click", function(e) {
+    gotoNextForm(formBtnNext2, formBtn3, 2, 3);
+    e.preventDefault();
+  });
+  
+  // Previous button listener of form 2
+  formBtnPrev2.addEventListener("click", function(e) {
+    gotoNextForm(formBtnNext2, formBtn1, 2, 1);
+    e.preventDefault();
+  });
+
+
+
+  // Next button listener of form 3
+  formBtnNext3.addEventListener("click", function(e) {
+    gotoNextForm(formBtnNext3, formBtn4, 3, 4);
+    e.preventDefault();
+  });
+  
+  // Previous button listener of form 3
+  formBtnPrev3.addEventListener("click", function(e) {
+    gotoNextForm(formBtnNext3, formBtn2, 3, 2);
+    e.preventDefault();
+  });
+
+
+
+//   // Previous button listener of form 4
+//   formBtnPrev4.addEventListener("click", function(e) {
+//     gotoNextForm(formBtnPrev4, formBtnNext3, 4, 3);
+//     e.preventDefault();
+//   });
+  
+//   // Button listener of form 4
+//   formBtn4.addEventListener("click", function(e) {
+//     document.querySelector(`.step--4`).classList.remove("step-active");
+//     document.querySelector(`.step--5`).classList.add("step-active");
+//     formBtn4.parentElement.style.display = "none";
+//     document.querySelector(".form--message").innerHTML = `
+//      <h1 class="form--message-text">Your account is successfully created </h1>`;
+//     // e.preventDefault();
+//   });
+
+//   Ici, nous commençons par passer les identifiants de formulaire en tant que paramètres puis nous utilisons la méthode preventDefault() sur l'événement pour empêcher le rechargement de la page.
+
+// L'auditeur formBtn3 est un peu différent car nous devons montrer un message à l'utilisateur. C'est pourquoi nous utilisons innerHTML pour ajouter le contenu HTML.
+
+const gotoNextForm = (prev, next, stepPrev, stepNext) => {
+    // Get form through the button
+    const prevForm = prev.parentElement;
+    const nextForm = next.parentElement;
+    const nextStep = document.querySelector(`.step--${stepNext}`);
+    const prevStep = document.querySelector(`.step--${stepPrev}`);
+    // Add active/inactive classes to both previous and next form
+    nextForm.classList.add("form-active");
+    nextForm.classList.add("form-active-animate");
+    prevForm.classList.add("form-inactive");
+    // Change the active step element
+    prevStep.classList.remove("step-active");
+    nextStep.classList.add("step-active");
+    // Remove active/inactive classes to both previous an next form
+    setTimeout(() => {
+      prevForm.classList.remove("form-active");
+      prevForm.classList.remove("form-inactive");
+      nextForm.classList.remove("form-active-animate");
+    }, 1000);
+
+//     Ici, nous parcourons le DOM en utilisant la propriété parentElement sur les variables prevForm et nextForm pour sélectionner l'élément form.
+
+// Ensuite, nous utilisons les variables pour sélectionner les étapes du formulaire à partir de l'élément stepper.
+
+// Après cela, nous ajoutons les classes form-active et form-active-animate à l'élément de formulaire suivant pour avoir un bel effet d'animation.
+
+// Ensuite, nous supprimons les classes form-active, form-inactive et form-active-animate des formulaires après 1 seconde en utilisant la méthode setTimeout().
+}
+
+
+    </script>
 {% endblock %}
